@@ -6,7 +6,12 @@
   [data]
   (println (str "Hello, " (or (:name data) "World") "!")))
 
+(defn greet-out
+  "Callable entry point to the application."
+  [data] 
+  (str "Hello, " (or (:name data) "World") "!"))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (greet {:name (first args)}))
+  (println (greet {:name (first args)})))

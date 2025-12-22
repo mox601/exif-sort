@@ -1,5 +1,6 @@
 {:paths ["src" "resources"]
- :deps {org.clojure/clojure {:mvn/version "1.12.4"}}
+ :deps {org.clojure/clojure {:mvn/version "1.12.4"}
+        io.joshmiller/exif-processor {:mvn/version "0.4.0"}}
  :aliases
  {:run-m {:main-opts ["-m" "exif-sort.exif-sort-root"]}
   :run-x {:ns-default exif-sort.exif-sort-root
