@@ -1,5 +1,7 @@
 (ns exif-sort.exif-sort-root
-  (:gen-class))
+  (:gen-class)
+  (:require [exif-processor.core :as exif]))
+
 
 (defn greet
   "Callable entry point to the application."
