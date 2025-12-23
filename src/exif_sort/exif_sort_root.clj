@@ -1,8 +1,22 @@
 (ns exif-sort.exif-sort-root
   (:gen-class)
   (:require [clojure.pprint :as pprint]
-            [exif-processor.core :as exif])
+            [exif-processor.core :as exif]
+            [clojure.java.shell :as shell]
+            [clojure.data.json :as json])
+  
   (:import (java.io File)))
+
+(defn dji-creation-date [path]
+  (let [{:keys [out err exit]}
+        (shell/sh "ffprobe"
+                  "-v" "quiet"
+                  "-show_entries" "format_tags=creation_time"
+                  "-of" "json"
+                  path)]
+    (when (zero? exit)
+      (get-in (json/read-str out :key-fn keyword)
+              [:format :tags :creation_time]))))
 
 ;; fallback
 (def date-patterns
@@ -27,6 +41,7 @@
   "Callable entry point to the application."
   [data] 
   (str "Hello, " (or (:name data) "World") "!"))
+
 (comment
 (defn -main
   "I don't do a whole lot ... yet."
