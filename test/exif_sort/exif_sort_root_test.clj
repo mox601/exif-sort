@@ -22,10 +22,7 @@
     (is (= "f/1.8"
            (get
             (exif/exif-for-filename
-             ;; get the full path from resource (URL-decoded)
-             (java.net.URLDecoder/decode
-              (.getPath (io/resource "2025-11-07 09.27.53.jpg"))
-              "UTF-8"))
+             (.getPath (io/file "test/resources/2025-11-07 09.27.53.jpg")))
             "F-Number")))
 
     (comment
